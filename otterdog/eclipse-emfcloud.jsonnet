@@ -9,6 +9,11 @@ orgs.newOrg('eclipse-emfcloud') {
       default_workflow_permissions: "write",
     },
   },
+  secrets+: [
+    orgs.newOrgSecret('NPMJS_TOKEN') {
+      value: "pass:bots/ecd.emfcloud/npmjs.com/token",
+    },
+  ],
   _repositories+:: [
     orgs.newRepo('coffee-editor') {
       allow_update_branch: false,
