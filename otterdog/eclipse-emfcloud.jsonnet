@@ -1,6 +1,6 @@
 local orgs = import 'vendor/otterdog-defaults/otterdog-defaults.libsonnet';
 
-orgs.newOrg('eclipse-emfcloud') {
+orgs.newOrg('ecd.emfcloud', 'eclipse-emfcloud') {
   settings+: {
     description: "",
     name: "Eclipse EMF Cloud™",
