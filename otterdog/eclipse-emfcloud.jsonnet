@@ -145,6 +145,18 @@ orgs.newOrg('ecd.emfcloud', 'eclipse-emfcloud') {
         default_workflow_permissions: "write",
       },
     },
+    orgs.newRepo('hydranium') {
+      allow_merge_commit: true,
+      allow_update_branch: false,
+      delete_branch_on_merge: false,
+      has_wiki: false,
+      secret_scanning: "disabled",
+      secret_scanning_push_protection: "disabled",
+      web_commit_signoff_required: false,
+      workflows+: {
+        default_workflow_permissions: "write",
+      },
+    },
     orgs.newRepo('jsonforms-property-view') {
       allow_merge_commit: true,
       allow_update_branch: false,
