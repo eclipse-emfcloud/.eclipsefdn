@@ -146,16 +146,41 @@ orgs.newOrg('ecd.emfcloud', 'eclipse-emfcloud') {
       },
     },
     orgs.newRepo('hydranium') {
-      allow_merge_commit: true,
       allow_update_branch: false,
-      delete_branch_on_merge: false,
+      gh_pages_build_type: "workflow",
       has_wiki: false,
+      homepage: "https://eclipse-emfcloud.github.io/hydranium/",
       secret_scanning: "disabled",
       secret_scanning_push_protection: "disabled",
       web_commit_signoff_required: false,
       workflows+: {
         default_workflow_permissions: "write",
       },
+      rulesets: [
+        orgs.newRepoRuleset('main') {
+          include_refs+: [
+            "~DEFAULT_BRANCH"
+          ],
+          required_pull_request+: {
+            required_approving_review_count: 0,
+          },
+          required_status_checks+: {
+            status_checks+: [
+              "build & test (ubuntu-22.04)",
+              "build & test (windows-2025)",
+              "e2e"
+            ],
+          },
+        },
+      ],
+      environments: [
+        orgs.newEnvironment('github-pages') {
+          branch_policies: [
+            "main"
+          ],
+          deployment_branch_policy: "selected",
+        }
+      ],
     },
     orgs.newRepo('jsonforms-property-view') {
       allow_merge_commit: true,
